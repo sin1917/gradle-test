@@ -27,7 +27,7 @@ jobs:
       - name: Run Tests
         run: ./gradlew test
 
-      # --- 【CDフェーズ】 テスト成功時のみ、コンテナ化して倉庫へ送る ---
+      # テスト成功時にのみDockerイメージのビルドとプッシュを行う
       - name: Log in to GitHub Container Registry
         if: success() # テストが成功した時だけ実行
         uses: docker/login-action@v3
@@ -44,3 +44,10 @@ jobs:
           push: true
           # あなたのGitHubユーザー名/リポジトリ名のイメージが作成されます
           tags: ghcr.io/${{ github.repository }}:latest
+
+      # --- 【CDフェーズ】 デプロイのトリガー ---
+      - name: Trigger Render Deployment
+        if: success()
+        run: |
+          curl -X POST ${{ secrets.RENDER_WEBHOOK_URL }} 
+            
