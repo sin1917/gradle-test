@@ -49,5 +49,5 @@ jobs:
       - name: Trigger Render Deployment
         if: success()
         run: |
-          curl -X POST ${{ secrets.RENDER_WEBHOOK_URL }} 
+          curl -X POST ${{ secrets.RENDER_DEPLOY_HOOK }} 
             
