@@ -24,6 +24,9 @@ jobs:
           distribution: 'temurin'
           cache: 'gradle' # ビルドを速くするためのキャッシュ設定
 
+      - name: Run Checkstyle
+        run: ./gradlew checkstyleMain 
+
       - name: Run Tests
         run: ./gradlew test
 
