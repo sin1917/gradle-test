@@ -13,8 +13,13 @@ public class DemoApiApplication {
 		SpringApplication.run(DemoApiApplication.class, args);
 	}
 
-		@GetMapping("/hello")
-		public String hello() {
-			return "Hello, World!";
-		}
+	@GetMapping("/")
+	public String home() {
+		return "Welcome to the Demo API!";
 	}
+
+	@GetMapping("/hello")
+	public String hello() {
+		return "Hello, World!";
+	}
+}
